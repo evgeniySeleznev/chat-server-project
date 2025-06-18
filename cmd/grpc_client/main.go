@@ -24,7 +24,7 @@ func main() {
 	}
 	defer conn.Close()
 
-	c := desc.NewNoteV1Client(conn)
+	c := desc.NewAuthV1Client(conn)
 
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
@@ -34,5 +34,5 @@ func main() {
 		log.Fatalf("failed to get note by id: %v", err)
 	}
 
-	log.Printf(color.RedString("Note info:\n"), color.GreenString("%+v", r.GetNote()))
+	log.Printf(color.RedString("Auth info:\n"), color.GreenString("%v", r.GetName()))
 }
