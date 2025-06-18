@@ -1,2 +1,7 @@
 .idea
 /bin/
+/pkg/
+*.exe
+*.log
+*.tmp
+.env
