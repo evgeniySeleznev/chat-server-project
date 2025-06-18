@@ -1,4 +1,4 @@
-module github.com/evgeniySeleznev/auth-project/
+module github.com/evgeniySeleznev/auth-project
 
 go 1.24.3
 
