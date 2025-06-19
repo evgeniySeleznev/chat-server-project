@@ -3,7 +3,6 @@ package main
 import (
 	"context"
 	"fmt"
-	"google.golang.org/protobuf/types/known/emptypb"
 	"log"
 	"net"
 
@@ -13,6 +12,7 @@ import (
 	"google.golang.org/protobuf/types/known/timestamppb"
 
 	desc "github.com/evgeniySeleznev/auth-project/pkg/auth_v1"
+	"google.golang.org/protobuf/types/known/emptypb"
 )
 
 const grpcPort = 50051
