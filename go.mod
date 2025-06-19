@@ -1,6 +1,6 @@
 module github.com/evgeniySeleznev/auth-project
 
-go 1.24.3
+go 1.23
 
 require (
 	github.com/brianvoe/gofakeit v3.18.0+incompatible

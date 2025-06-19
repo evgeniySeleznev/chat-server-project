@@ -22,7 +22,12 @@ func main() {
 	if err != nil {
 		log.Fatalf("failed to connect to server: %v", err)
 	}
-	defer conn.Close()
+	defer func() {
+		err := conn.Close()
+		if err != nil {
+			log.Fatalf("failed to close connection: %v", err)
+		}
+	}()
 
 	c := desc.NewAuthV1Client(conn)
 

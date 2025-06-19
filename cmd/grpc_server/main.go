@@ -22,7 +22,7 @@ type server struct {
 
 // Get ...
 func (s *server) Get(ctx context.Context, req *desc.GetRequest) (*desc.GetResponse, error) {
-	log.Printf("Note id: %d", req.GetId())
+	log.Printf("Note id: %d, %v", req.GetId(), ctx.Value(req.GetId()))
 
 	return &desc.GetResponse{
 		Id:        req.GetId(),
