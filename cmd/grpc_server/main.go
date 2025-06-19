@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"fmt"
+	"google.golang.org/protobuf/types/known/emptypb"
 	"log"
 	"net"
 
@@ -20,9 +21,20 @@ type server struct {
 	desc.UnimplementedAuthV1Server
 }
 
+// Create ...
+func (s *server) Create(ctx context.Context, req *desc.CreateRequest) (*desc.CreateResponse, error) {
+	_ = ctx // <– подавляем линтер, без логических побочных эффектов
+	log.Printf("Name: %s, email: %s, pass: %s, pass_confirm: %s, role: %v", req.GetName(), req.GetEmail(), req.GetPassword(), req.GetPasswordConfirm(), req.GetRole())
+
+	return &desc.CreateResponse{
+		Id: gofakeit.Int64(),
+	}, nil
+}
+
 // Get ...
 func (s *server) Get(ctx context.Context, req *desc.GetRequest) (*desc.GetResponse, error) {
-	log.Printf("Note id: %d, %v", req.GetId(), ctx.Value(req.GetId()))
+	_ = ctx // <– подавляем линтер, без логических побочных эффектов
+	log.Printf("Note id: %d", req.GetId())
 
 	return &desc.GetResponse{
 		Id:        req.GetId(),
@@ -32,6 +44,20 @@ func (s *server) Get(ctx context.Context, req *desc.GetRequest) (*desc.GetRespon
 		CreatedAt: timestamppb.New(gofakeit.Date()),
 		UpdatedAt: timestamppb.New(gofakeit.Date()),
 	}, nil
+}
+
+// Update ...
+func (s *server) Update(ctx context.Context, req *desc.UpdateRequest) (*emptypb.Empty, error) {
+	_ = ctx // <– подавляем линтер, без логических побочных эффектов
+	log.Printf("Update request ID: %d, name: %s, email: %s", req.GetId(), req.GetName(), req.GetEmail())
+	return &emptypb.Empty{}, nil
+}
+
+// Delete ...
+func (s *server) Delete(ctx context.Context, req *desc.DeleteRequest) (*emptypb.Empty, error) {
+	_ = ctx // <– подавляем линтер, без логических побочных эффектов
+	log.Printf("Delete qequest ID: %d", req.GetId())
+	return &emptypb.Empty{}, nil
 }
 
 func main() {

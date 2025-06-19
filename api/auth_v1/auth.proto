@@ -15,6 +15,13 @@ service AuthV1 {
   rpc Delete(DeleteRequest) returns (google.protobuf.Empty);
 }
 
+message User {
+  string name = 1;
+  string email = 2;
+  string password = 3;
+  Role role = 4;
+}
+
 enum Role {
   ROLE_UNSPECIFIED = 0;
   USER = 1;
