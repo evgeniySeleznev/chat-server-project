@@ -28,7 +28,6 @@ linters:
     - revive
     - typecheck
     - unused
-    - shadow # ← включаем как отдельный линтер, заменяя govet.shadow
 
 issues:
   exclude-use-default: false
