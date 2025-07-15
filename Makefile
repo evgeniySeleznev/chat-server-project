@@ -25,3 +25,8 @@ install-golangci-lint:
 
 lint:
 	$(LOCAL_BIN)/golangci-lint run ./... --config .golangci.pipeline.yaml
+
+docker-build-and-push:
+	docker buildx build --no-cache --platform linux/amd64 -t cr.selcloud.ru/test22/chat-server:v0.0.1 .
+	docker login -u token -p CRgAAAAAleiIykeIOaoeBtduNFsQSE9stUB9YWyp cr.selcloud.ru/test22
+	docker push cr.selcloud.ru/test22/chat-server:v0.0.1
