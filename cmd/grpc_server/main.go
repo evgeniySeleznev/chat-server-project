@@ -2,21 +2,18 @@ package main
 
 import (
 	"context"
-	"database/sql"
 	"flag"
 	"fmt"
 	"github.com/evgeniySeleznev/chat-server-project/internal/config"
 	"github.com/evgeniySeleznev/chat-server-project/internal/config/env"
+	"github.com/evgeniySeleznev/chat-server-project/internal/configenv"
 	"log"
 	"net"
-	"time"
 
 	sq "github.com/Masterminds/squirrel"
-	"github.com/brianvoe/gofakeit"
 	"github.com/jackc/pgx/v4/pgxpool"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
-	"google.golang.org/protobuf/types/known/timestamppb"
 
 	desc "github.com/evgeniySeleznev/chat-server-project/pkg/chat_v1"
 	"google.golang.org/protobuf/types/known/emptypb"
@@ -233,7 +230,7 @@ func main() {
 
 	s := grpc.NewServer()
 	reflection.Register(s)
-	desc.RegisterAuthV1Server(s, &server{pool: pool})
+	desc.RegisterChatV1Server(s, &server{pool: pool})
 
 	log.Printf("server listening at %v", lis.Addr())
 
