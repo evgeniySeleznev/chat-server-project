@@ -16,7 +16,7 @@ services:
   migrator-chat-server:
     build:
       context: .
-      dockerfile: migration.Dockerfile
+      dockerfile: chat-migration.Dockerfile
     restart: on-failure
     environment:
       DB_HOST: chat-server-pg
